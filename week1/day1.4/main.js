@@ -49,11 +49,62 @@ obj['age'] = 99;
 
 
 function someName(...rest) {
+  var child = 'child stuff';
   // console.log(arguments);
   console.log(rest);
   // console.log('name' + name.toUpperCase());
 
-  return 5;
+  return child;
 }
 
 console.log(someName('Jason', 'bob', 565656));
+
+function counter() {
+  var count = 0;
+
+
+  function childScope() {
+    console.log('inside child scope', ++count);
+    return count;
+  }
+
+  return childScope;
+}
+
+
+counter = counter();
+console.log(counter);
+console.log(counter());
+console.log(counter());
+console.log(counter());
+console.log(counter());
+console.log(counter());
+console.log(counter());
+console.log(counter());
+console.log(counter());
+console.log(counter());
+console.log(counter());
+// counter()
+// => 1;
+// counter()
+// => 2;
+// counter()
+// => 3;
+
+
+var func = function() {
+  console.log('inside anon func');
+};
+
+function doesThings(callback) {
+    console.log(callback);
+    console.log(typeof callback);
+    if (typeof callback === 'function') {
+      callback();
+    }
+}
+
+doesThings(func);
+
+
+// func();

@@ -67,6 +67,53 @@ function someName(name, bob, num, ...rest) {
 
   return 345;
 }
-
-console.log(someName('Jason', 'bobo', 23423423));
+// console.log(someName('Jason', 'bobo', 23423423));
 // console.log(child)
+function counter() {
+  var count = 0;
+
+  function childScope() {
+    console.log('count is', count);
+
+    count++;
+    return count;
+  }
+
+  return childScope;
+}
+
+counter = counter();
+console.log(counter());
+console.log(counter());
+//
+// // => 1
+//
+console.log(counter());
+//
+// // => 2
+console.log(counter());
+//
+// // => 3
+//
+console.log(counter());
+//
+// // => 4
+var func = function() {
+  console.log('inside anon func');
+};
+
+
+function doThings(callback) {
+  console.log(callback);
+  console.log(typeof callback);
+
+  if (typeof callback === 'function') {
+    callback();
+  } else {
+    console.log('not a funciton');
+  }
+}
+
+
+
+doThings(counter);
